@@ -23,3 +23,18 @@ Formato:
 ```
 
 Las apps solo aceptan una lista con `emitida` igual o más reciente que la última que guardaron.
+
+## `novedades.json` y `avisos.json`
+
+Avisos del SAT y cambios de ley para la sección **Novedades del SAT** de Ajolote Fiscal.
+
+- `novedades.json` es la versión legible, **sin firmar**. Claude propone cada aviso con un Pull Request y HG lo
+  revisa y lo une: eso es la aprobación.
+- `avisos.json` es lo que baja Ajolote. Lo genera la **consola de GC Digital** con «Firmar y publicar»: valida
+  `novedades.json`, lo firma con la llave de GC Digital (tipo `gcdigital-avisos`) y lo sube. No se edita a mano.
+- Ajolote decide **en la computadora de cada quien** a quién le toca cada aviso, con sus facturas (régimen,
+  proveedor de timbrado, persona física o moral). No envía nada.
+
+Cada aviso lleva `id`, `fecha`, `urgencia` (`pronto`, `enero` o `saber`), `titulo`, `que_hacer` y `fuente`
+(nombre y liga oficial https). Opcionales: `texto`, `hasta`, `franja`, `valida`, `mensaje`, `pedir` y `aplica`
+(`regimenes`, `pac`, `persona`). Uno o dos avisos por semana como máximo, siempre con fuente y fecha.
